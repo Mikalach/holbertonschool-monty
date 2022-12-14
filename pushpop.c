@@ -42,7 +42,6 @@ void _push(stack_t **new_node, unsigned int line_number)
 	head = *new_node;
 	head->next = tmp;
 	tmp->prev = head;
-
 }
 
 /**
