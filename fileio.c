@@ -15,6 +15,7 @@ void open_fd(char *file_name)
 	read_fd(fd);
 
 	fclose(fd);
+	free(head);
 }
 
 /**
