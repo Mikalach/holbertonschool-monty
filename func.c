@@ -22,6 +22,7 @@ void _pall(stack_t **stack, unsigned int line_number)
 		printf("%d\n", tmp->n);
 		tmp = tmp->next;
 	}
+	free(tmp);
 }
 
 /**
