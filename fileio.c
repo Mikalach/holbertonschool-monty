@@ -1,18 +1,17 @@
 #include "monty.h"
 
 /**
- *open_file - open the given file
+ *open_fd - open the given file
  *@file_name: name of the file to open
  */
 
 void open_fd(char *file_name)
 {
 	FILE *fd = fopen(file_name, "r");
-	/*if (file_name == NULL || fd == NULL)
-	  error(2, file_name);*/
+
 	if (!fd)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", file_name); 
+		fprintf(stderr, "Error: Can't open file %s\n", file_name);
 		free_stack(head);
 		exit(EXIT_FAILURE);
 	}
@@ -22,7 +21,7 @@ void open_fd(char *file_name)
 }
 
 /**
- * read_file - read the given file previously opened
+ * read_fd - read the given file previously opened
  * @fd: file descriptor
  */
 
@@ -40,12 +39,15 @@ void read_fd(FILE *fd)
 	free(line);
 }
 
+/**
+ * tokenl - function that tokenize line
+ * @line: line to tokenize
+ * @line_number: number of the line
+*/
 void tokenl(char *line, int line_number)
 {
 	char *opcode, *value;
 
-	/*if (line == NULL)
-	  error*/
 	opcode = strtok(line, DELIM);
 	if (opcode != NULL)
 	{
@@ -54,6 +56,10 @@ void tokenl(char *line, int line_number)
 	}
 }
 
+/**
+ * free_stack - function used to free the stack
+ * @h: pointer to head of the stack
+*/
 void free_stack(stack_t *h)
 {
 	stack_t *temp = NULL;
