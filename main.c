@@ -14,11 +14,10 @@ int main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		fprintf(stderr, "ERROR NB ARG !\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	open_fd(av[1]);
-
 
 	return (0);
 }
