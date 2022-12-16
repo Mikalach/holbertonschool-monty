@@ -37,7 +37,7 @@ void get_func(char *opcode, char *value, int line_number)
 	}
 
 	if (flag == 1)
-		printf("ERROR");
+		printf("ERROR COMMAND");
 }
 
 void call_fun(op_func func, char *opcode, char *value, int line_number)
@@ -55,11 +55,11 @@ void call_fun(op_func func, char *opcode, char *value, int line_number)
 			flag = -1;
 		}
 		if (value == NULL)
-			printf("ERROR\n");
+			printf("ERROR VALUE\n");
 		for (i = 0; value[i] != '\0'; i++)
 		{
 			if (isdigit(value[i]) == 0)
-				printf("ERROR\n");
+				printf("ERROR ISDIGIT\n");
 		}
 		node = new_node(atoi(value) * flag);
 
