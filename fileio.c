@@ -41,10 +41,11 @@ void tokenl(char *line, int line_number)
 	/*if (line == NULL)
 	  error*/
 	opcode = strtok(line, DELIM);
-	if (opcode == NULL)
-		return;
-	value = strtok(NULL, DELIM);
-	get_func(opcode, value, line_number);
+	if (opcode != NULL)
+	{
+		value = strtok(NULL, DELIM);
+		get_func(opcode, value, line_number);
+	}
 }
 
 void free_stack(stack_t *h)
