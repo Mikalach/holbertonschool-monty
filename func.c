@@ -33,10 +33,36 @@ void _pall(stack_t **stack, unsigned int line_number)
 
 void _pint(stack_t **stack, unsigned int line_number)
 {
-	(void) line_number;
-	/*if (stack == NULL || *stack == NULL)
-	  ERROR*/
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		return;
+	}
 	printf("%d\n", (*stack)->n);
+}
+
+/**
+ * add - f° that add the 2 top nodes of the stack
+ * @stack: pointer to head of the stack
+ * @line_number: number of the line
+ *
+ * Return: void value
+ */
+void add(stack_t **stack, unsigned int line_number)
+{
+	unsigned int sum;
+	stack_t *temp;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+		return;
+	}
+
+	temp = (*stack)->next;
+	sum = (*stack)->n + temp->n;
+	temp->n = sum;
+	_pop(stack, line_number);
 }
 
 /**
@@ -60,11 +86,12 @@ void _nop(stack_t **stack, unsigned int line_number)
 void _swap(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
-	(void) line_number;
 
-	/*maybe a condition is missing for the error
-	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
-	Error*/
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+		return;
+	}
 	tmp = (*stack)->next;
 	(*stack)->next = tmp->next;
 	if (tmp->next != NULL)
