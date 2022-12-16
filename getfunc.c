@@ -63,7 +63,10 @@ void call_fun(op_func func, char *opcode, char *value, int line_number)
 		for (i = 0; value[i] != '\0'; i++)
 		{
 			if (isdigit(value[i]) == 0)
+			{
 				fprintf(stderr, "L%d: usage: push integer\n", line_number);
+				exit(EXIT_FAILURE);
+			}
 		}
 		node = new_node(atoi(value) * flag);
 		if (!node)
