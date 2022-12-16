@@ -12,7 +12,7 @@ void open_fd(char *file_name)
 	  error(2, file_name);*/
 	if (!fd)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", file_name);
+		fprintf(stderr, "Error: Can't open file %s\n", file_name); 
 		free_stack(head);
 		exit(EXIT_FAILURE);
 	}
