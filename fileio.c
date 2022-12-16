@@ -33,6 +33,8 @@ void read_fd(FILE *fd)
 
 	for (line_number = 1; getline(&line, &len, fd) != -1; line_number++)
 	{
+		if (line[0] == '\n')
+			continue;
 		tokenl(line, line_number);
 	}
 

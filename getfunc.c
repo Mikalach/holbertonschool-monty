@@ -72,7 +72,10 @@ void call_fun(op_func func, char *opcode, char *value, int line_number)
 			flag = -1;
 		}
 		if (value == NULL)
-			printf("ERROR VALUE\n");
+		{
+			fprintf(stderr, "L%d: usage: push integer\n", line_number);
+			exit(EXIT_FAILURE);
+		}
 		for (i = 0; value[i] != '\0'; i++)
 		{
 			if (isdigit(value[i]) == 0)
