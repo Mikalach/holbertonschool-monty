@@ -12,6 +12,7 @@ void open_fd(char *file_name)
 	  error(2, file_name);*/
 	read_fd(fd);
 	fclose(fd);
+	free_stack(head);
 }
 
 /**
@@ -48,12 +49,12 @@ void tokenl(char *line, int line_number)
 
 void free_stack(stack_t *h)
 {
-	stack_t *temp = h;
+	stack_t *temp = NULL;
 
-	if (temp == NULL)
+	if (h == NULL)
 		return;
 
-	while (h)
+	while (h != NULL)
 	{
 		temp = h;
 		h = h->next;
