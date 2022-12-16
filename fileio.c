@@ -10,6 +10,11 @@ void open_fd(char *file_name)
 	FILE *fd = fopen(file_name, "r");
 	/*if (file_name == NULL || fd == NULL)
 	  error(2, file_name);*/
+	if (!fd)
+	{
+		free_stack(head);
+		exit(EXIT_FAILURE);
+	}
 	read_fd(fd);
 	fclose(fd);
 	free_stack(head);
