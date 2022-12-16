@@ -8,14 +8,10 @@
 void open_fd(char *file_name)
 {
 	FILE *fd = fopen(file_name, "r");
-
 	/*if (file_name == NULL || fd == NULL)
 	  error(2, file_name);*/
-
 	read_fd(fd);
-
 	fclose(fd);
-	free(head);
 }
 
 /**
@@ -44,7 +40,24 @@ void tokenl(char *line, int line_number)
 	/*if (line == NULL)
 	  error*/
 	opcode = strtok(line, DELIM);
+	if (opcode == NULL)
+		return;
 	value = strtok(NULL, DELIM);
-
 	get_func(opcode, value, line_number);
+}
+
+void free_stack(stack_t *h)
+{
+	stack_t *temp = h;
+
+	if (temp == NULL)
+		return;
+
+	while (h)
+	{
+		temp = h;
+		h = h->next;
+		free(temp);
+	}
+	free(h);
 }

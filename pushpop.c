@@ -12,6 +12,11 @@ stack_t *new_node(int n)
 	stack_t *new;
 
 	new = malloc(sizeof(stack_t));
+	if (!new)
+	{
+		fprintf(stderr, "Error: Can't open file");
+		exit(EXIT_FAILURE);
+	     }
 	new->next = NULL;
 	new->prev = NULL;
 	new->n = n;

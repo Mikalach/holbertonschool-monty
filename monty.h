@@ -7,7 +7,7 @@
 #include <unistd.h>
 #include <ctype.h>
 
-#define DELIM " \n\t"
+#define DELIM "\n\t "
 
 /*given structs for the exercice*/
 /**
@@ -57,5 +57,6 @@ void _push(stack_t **new_node, unsigned int line_number);
 void _pop(stack_t **stack, unsigned int line_number);
 stack_t *new_node(int n);
 void call_fun(op_func func, char *opcode, char *value, int line_number);
+void free_stack(stack_t *h);
 
 #endif
