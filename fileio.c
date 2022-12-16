@@ -8,14 +8,10 @@
 void open_fd(char *file_name)
 {
 	FILE *fd = fopen(file_name, "r");
-	if (fd == NULL)
-		printf("ERROR 1");
 	/*if (file_name == NULL || fd == NULL)
 	  error(2, file_name);*/
-	else
-		read_fd(fd);
-	if (fd != NULL)
-		fclose(fd);
+	read_fd(fd);
+	fclose(fd);
 }
 
 /**
@@ -28,16 +24,13 @@ void read_fd(FILE *fd)
 	int line_number;
 	char *line = NULL;
 	size_t len = 0;
-	ssize_t n_read = getline(&line, &len, fd);
 
-	for (line_number = 1; n_read != -1; line_number++)
+	for (line_number = 1; getline(&line, &len, fd) != -1; line_number++)
 	{
 		tokenl(line, line_number);
-		return;
 	}
-	if (line != NULL)
-	    free(line);
-	free_stack(head);
+
+	free(line);
 }
 
 void tokenl(char *line, int line_number)

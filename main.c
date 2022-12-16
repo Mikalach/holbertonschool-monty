@@ -17,7 +17,6 @@ int main(int ac, char **av)
 		fprintf(stderr, "ERROR !\n");
 		exit(EXIT_FAILURE);
 	}
-
 	open_fd(av[1]);
 
 	return (0);
