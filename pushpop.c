@@ -14,9 +14,9 @@ stack_t *new_node(int n)
 	new = malloc(sizeof(stack_t));
 	if (!new)
 	{
-		fprintf(stderr, "Error: Can't open file");
-		exit(EXIT_FAILURE);
-	     }
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(37);
+	}
 	new->next = NULL;
 	new->prev = NULL;
 	new->n = n;
@@ -36,8 +36,6 @@ void _push(stack_t **new_node, unsigned int line_number)
 	stack_t *tmp;
 	(void)line_number;
 
-	/*if (!new_node || !(*new_node))
-		error*/
 	if (!head)
 	{
 		head = *new_node;
@@ -58,11 +56,12 @@ void _push(stack_t **new_node, unsigned int line_number)
 void _pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
-	(void) line_number;
 
-	/*if (stack == NULL || *stack == NULL)
-		error*/
-
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		return;
+	}
 	tmp = *stack;
 	*stack = tmp->next;
 	if (*stack != NULL)
