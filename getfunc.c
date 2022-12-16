@@ -18,6 +18,7 @@ void get_func(char *opcode, char *value, int line_number)
 		{"push", _push},
 		{"pall", _pall},
 		{"pint", _pint},
+		{"add", add},
 		{"pop", _pop},
 		{"nop", _nop},
 		{"swap", _swap},
@@ -37,7 +38,10 @@ void get_func(char *opcode, char *value, int line_number)
 	}
 
 	if (flag == 1)
-		printf("ERROR COMMAND");
+	{
+		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
+		exit(EXIT_FAILURE);
+	}
 }
 
 void call_fun(op_func func, char *opcode, char *value, int line_number)
@@ -59,9 +63,14 @@ void call_fun(op_func func, char *opcode, char *value, int line_number)
 		for (i = 0; value[i] != '\0'; i++)
 		{
 			if (isdigit(value[i]) == 0)
-				printf("ERROR ISDIGIT\n");
+				fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		}
 		node = new_node(atoi(value) * flag);
+		if (!node)
+		{
+			fprintf(stderr, "Error: malloc failed\n");
+			exit(37);
+		}
 
 		func(&node, line_number);
 	}
