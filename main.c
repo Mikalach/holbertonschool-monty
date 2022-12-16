@@ -14,7 +14,7 @@ int main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		fprintf(stderr, "ERROR !\n");
+		fprintf(stderr, "ERROR NB ARG !\n");
 		exit(EXIT_FAILURE);
 	}
 	open_fd(av[1]);
