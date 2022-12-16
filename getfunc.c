@@ -9,6 +9,12 @@
 
 typedef void (*op_func)(stack_t **, unsigned int);
 
+/**
+ * get_func - function struct
+ * @opcode: command token to use
+ * @value: token value to use
+ * @line_number: number of the line
+*/
 void get_func(char *opcode, char *value, int line_number)
 {
 	int i;
@@ -44,6 +50,13 @@ void get_func(char *opcode, char *value, int line_number)
 	}
 }
 
+/**
+ * call_fun - function which call the others
+ * @func: struct
+ * @opcode: command token to use
+ * @value: token value to use
+ * @line_number: number of the line
+*/
 void call_fun(op_func func, char *opcode, char *value, int line_number)
 
 {
