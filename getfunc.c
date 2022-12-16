@@ -41,14 +41,27 @@ void get_func(char *opcode, char *value, int line_number)
 }
 
 void call_fun(op_func func, char *opcode, char *value, int line_number)
+
 {
 	stack_t *node;
-	/*int flag = 1;
-	int i;*/
+	int flag = 1;
+	int i;
 
 	if (strcmp(opcode, "push") == 0)
 	{
-		node = new_node(atoi(value));
+		if (value != NULL && value[0] == '-')
+		{
+			value = value + 1;
+			flag = -1;
+		}
+		if (value == NULL)
+			printf("ERROR\n");
+		for (i = 0; value[i] != '\0'; i++)
+		{
+			if (isdigit(value[i]) == 0)
+				printf("ERROR\n");
+		}
+		node = new_node(atoi(value) * flag);
 
 		func(&node, line_number);
 	}
