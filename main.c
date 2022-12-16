@@ -19,5 +19,6 @@ int main(int ac, char **av)
 	}
 	open_fd(av[1]);
 
+
 	return (0);
 }
